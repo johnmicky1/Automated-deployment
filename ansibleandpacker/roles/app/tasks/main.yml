@@ -1,0 +1,18 @@
+- name: "clone react app"
+  shell: git clone https://github.com/inno-asiimwe/css_clock.git
+
+- name: "Install yarn packages for the clock app"
+  shell: cd css_clock && yarn install
+  become: yes
+
+- name: Update css_clock Configurations
+  command: cp /tmp/css_clock.service /etc/systemd/system/css_clock.service
+  become: yes
+
+- name: "Enable css clock service"
+  command: systemctl enable css_clock.service
+  become: yes
+
+- name: "Start css clock service"
+  command: systemctl start css_clock.service
+  become: yes

@@ -1,0 +1,44 @@
+- name: "Install Git"
+  apt:
+    name: git
+    state: latest
+
+- name: "Add at key for nodejs package"
+  shell: curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
+
+- name: Run Updates
+  apt:
+    update_cache: yes
+  become: true
+
+- name: Upgrade
+  apt:
+    upgrade: yes
+    update_cache: yes
+  become: true
+
+- name: "Install nodejs"
+  apt:
+    name: nodejs
+    state: latest
+
+- name: "Add at key for yarn package"
+  shell: curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+
+- name: "Add yarn package source url to source list"
+  shell: echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+- name: Run Updates
+  apt:
+    update_cache: yes
+  become: true
+
+- name: "Install Yarn"
+  apt:
+    name: yarn
+    state: latest
+
+- name: Run Updates
+  apt:
+    update_cache: yes
+  become: true

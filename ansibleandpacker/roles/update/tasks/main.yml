@@ -1,0 +1,15 @@
+- name: Run Updates
+  apt:
+    update_cache: yes
+  become: yes
+
+- name: Upgrade
+  apt:
+    upgrade: yes
+    update_cache: yes
+  become: yes
+
+- name: update before installing the needed software
+  apt:
+    update_cache: yes
+  become: yes
